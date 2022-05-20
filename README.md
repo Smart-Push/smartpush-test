@@ -1,46 +1,25 @@
-# Getting Started with Create React App
+# Smartpush Test ReactJS
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Instructions
+Based on the context of the algorithm use case, you should make a ReactJS mini app with the following guidelines.
 
-## Available Scripts
+### External data
+We provide a json file at the path `src/api/mock-api/data.json` which simulates an API call return.
 
-In the project directory, you can run:
+### Objective #1
+On the home page, we would like display a table with following columns `id`, `firstname`, `lastname`, `age`, `city`, `address`.   
+The content of the table will be enriched by the content of the data.json file.
+You must use `fetch` method to load json file.
 
-### `npm start`
+#### Confirm message
+After loading json file, we would like display a message at the top of page, only one time and display it during 10 seconds.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+#### Filter content table
+Next objective is add a search bar above table to filter table based on `lastname` field.   
+The filtering of the array starts as soon as a character is entered in the input and updates the array as it goes.
+If there is no result, display a message below the table "No matching result".
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+### N.B
+Remember, a pretty react component is a small component.   
+A ReactJS application must be reactive.
+For this use case, we do not attach great importance to the visual rendering.
