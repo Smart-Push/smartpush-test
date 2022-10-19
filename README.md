@@ -4,7 +4,7 @@
 Based on the context of the algorithm use case, you should make a ReactJS mini app with the following guidelines.
 
 ### External data
-We provide a json file at the path `src/api/mock-api/data.json` which simulates an API call return.
+We provide a json file at the path `public/api/mock-api/data.json` which simulates an API call return.
 
 ### Objective #1
 On the home page, we would like display a table with following columns `id`, `firstname`, `lastname`, `age`, `city`, `address`.   
