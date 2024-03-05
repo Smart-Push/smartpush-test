@@ -21,8 +21,6 @@ final class Version20240304102519 extends AbstractMigration
     {
         $typePayments = json_decode(file_get_contents(__DIR__ . '/../default_data/type_payment.json'), true);
 
-        var_dump($typePayments);
-
         foreach ($typePayments as $typePayment) {
             $name = $typePayment['name'];
 
