@@ -21,6 +21,7 @@
         "symfony/property-info": "6.4.*",
         "symfony/runtime": "6.4.*",
         "symfony/serializer": "6.4.*",
+        "symfony/validator": "6.4.*",
         "symfony/yaml": "6.4.*"
     },
     "config": {
@@ -73,6 +74,7 @@
         }
     },
     "require-dev": {
+        "symfony/maker-bundle": "^1.55",
         "symfony/stopwatch": "6.4.*",
         "symfony/web-profiler-bundle": "6.4.*"
     }
