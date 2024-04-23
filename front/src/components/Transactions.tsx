@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect } from "react";
 import { Transaction } from "../models/Transaction";
 import TransactionItem from "./TransactionItem";
+import TransactionsSearchForm from "./TransactionsSearchForm";
 import TextWrapper from "./UI/TextWrapper";
 import Alert from "./UI/Alert";
 
@@ -33,6 +34,14 @@ const Transactions: React.FC<{onTransactionClick: (transactionId: number) => voi
   useEffect(() => {
     fetchTransactions();
   }, [fetchTransactions]);
+
+  const transactionsSearchHandler = (searchQuery: string) => {
+    if (searchQuery.trim().length === 0) {
+      fetchTransactions();
+    } else {
+      fetchTransactions(searchQuery);
+    }
+  }
   
   return (
     <>
@@ -42,6 +51,8 @@ const Transactions: React.FC<{onTransactionClick: (transactionId: number) => voi
           <Alert text={error} />
         </div>
       }
+
+      <TransactionsSearchForm onSearch={transactionsSearchHandler}/>
 
       <div className="w-full rounded-lg shadow-md">
 
@@ -60,7 +71,7 @@ const Transactions: React.FC<{onTransactionClick: (transactionId: number) => voi
                   <TransactionItem 
                     key={transaction.id} 
                     transaction={transaction} 
-                    onTransactionClick={props.onTransactionClick.bind(null, transaction.id)}
+                    onClick={props.onTransactionClick.bind(null, transaction.id)}
                   />
                 ))}
               </tbody>
