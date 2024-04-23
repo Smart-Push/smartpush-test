@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
+import { fetchData } from "../utils/ApiUtils";
 import { Transaction } from "../models/Transaction";
 import TransactionItem from "./TransactionItem";
 import TransactionsSearchForm from "./TransactionsSearchForm";
@@ -18,17 +19,13 @@ const Transactions: React.FC<{onTransactionClick: (transactionId: number) => voi
       if (searchQuery) {
         url += `?q=${searchQuery}`
       }
-      const response = await fetch(url);
-      const data = await response.json();
-      if (!response.ok) {
-        throw Error(data.message);
-      } else {
-        setLoadedTransactions(data);
-      }
+      const data = await fetchData(url);
+      setLoadedTransactions(data);
     } catch (error) {
       setError(error instanceof Error ? error.message : "Failed to fetch transactions.");
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   }, []);
 
   useEffect(() => {

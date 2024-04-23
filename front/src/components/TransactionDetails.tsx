@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
+import { fetchData } from "../utils/ApiUtils";
 import { Transaction } from "../models/Transaction";
 import TextWrapper from "./UI/TextWrapper";
 import Alert from "./UI/Alert";
@@ -12,17 +13,13 @@ const TransactionDetails: React.FC<{ transactionId?: number }> = (props) => {
   const fetchTransaction = useCallback(async (transactionId: number) => {
     setIsLoading(true);
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/transactions/${transactionId}`);
-      const data = await response.json();
-      if (!response.ok) {
-        throw Error(data.message);
-      } else {
-        setLoadedTransaction(data);
-      }
+      const data = await fetchData(`${process.env.REACT_APP_API_URL}/transactions/${transactionId}`);
+      setLoadedTransaction(data);
     } catch (error) {
       setError(error instanceof Error ? error.message : "Failed to fetch transaction details.");
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   }, []);
 
   useEffect(() => {
