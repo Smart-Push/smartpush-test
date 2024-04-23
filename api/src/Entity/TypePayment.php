@@ -3,9 +3,18 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\GetCollection;
 use App\Repository\TypePaymentRepository;
 
 #[ORM\Entity(repositoryClass: TypePaymentRepository::class)]
+#[ApiResource(
+    operations: [
+        new GetCollection(
+            uriTemplate: '/payment-types'
+        )
+    ],
+)]
 class TypePayment
 {
     #[ORM\Id]
