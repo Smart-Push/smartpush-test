@@ -6,9 +6,11 @@ use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Delete;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\GetCollection;
 use App\Repository\TransactionRepository;
+use App\Api\Filter\TransactionSearchFilter;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\SerializedName;
 
@@ -24,6 +26,9 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
     ],
     normalizationContext: ['groups' => ['transaction:collection:read', 'transaction:item:read']],
     denormalizationContext: ['groups' => ['transaction:write']],
+)]
+#[ApiFilter(TransactionSearchFilter::class, 
+    properties: ['label', 'amount', 'typePayment.name'],
 )]
 class Transaction
 {
