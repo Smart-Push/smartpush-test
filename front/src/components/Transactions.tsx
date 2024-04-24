@@ -1,16 +1,19 @@
 import { useState, useCallback, useEffect } from "react";
 import { fetchData } from "../utils/ApiUtils";
 import { Transaction } from "../models/Transaction";
-import TransactionItem from "./TransactionItem";
 import TransactionsSearchForm from "./TransactionsSearchForm";
+import TransactionItem from "./TransactionItem";
+import TransactionDetails from "./TransactionDetails";
 import TextWrapper from "./UI/TextWrapper";
 import Alert from "./UI/Alert";
 
-const Transactions: React.FC<{onTransactionClick: (transactionId: number) => void }>= (props) => {
+const Transactions: React.FC = () => {
 
   const [loadedTransactions, setLoadedTransactions] = useState<Transaction[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<null | string>(null);
+  
+  const [selectedTransactionId, setSelectedTransactionId] = useState<number | undefined>(undefined);
 
   const fetchTransactions = useCallback(async (searchQuery?: string) => {
     setIsLoading(true);
@@ -31,6 +34,10 @@ const Transactions: React.FC<{onTransactionClick: (transactionId: number) => voi
   useEffect(() => {
     fetchTransactions();
   }, [fetchTransactions]);
+
+  const transactionClickHandler = (transactionId: number) => {
+    setSelectedTransactionId(transactionId);
+  }
 
   const transactionsSearchHandler = (searchQuery: string) => {
     if (searchQuery.trim().length === 0) {
@@ -68,7 +75,7 @@ const Transactions: React.FC<{onTransactionClick: (transactionId: number) => voi
                   <TransactionItem 
                     key={transaction.id} 
                     transaction={transaction} 
-                    onClick={props.onTransactionClick.bind(null, transaction.id)}
+                    onClick={transactionClickHandler.bind(null, transaction.id)}
                   />
                 ))}
               </tbody>
@@ -83,6 +90,9 @@ const Transactions: React.FC<{onTransactionClick: (transactionId: number) => voi
         {isLoading && <TextWrapper text="Loading..." />}
 
       </div>
+
+      <TransactionDetails transactionId={selectedTransactionId}/>
+
     </>
   );
 }
