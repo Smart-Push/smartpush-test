@@ -1,24 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Header from "./components/Header";
+import Transactions from "./components/Transactions";
 
 function App() {
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="flex h-screen bg-gray-50 dark:bg-gray-900">
+      <div className="flex flex-col flex-1 w-full">
+        <Header />
+        <main className="w-full h-full overflow-y-auto">
+					<div className="container grid py-6 px-6 mx-auto">
+            <Transactions />
+          </div>
+        </main>
+      </div>
     </div>
   );
 }
